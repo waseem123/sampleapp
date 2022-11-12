@@ -8,18 +8,26 @@ import javax.persistence.Id;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int user_id;
     String user_name;
-    String user_city;
+    String user_email;
+    String user_password;
 
     public User() {
     }
 
-    public User(int user_id, String user_name, String user_city) {
+    public User(String user_name, String user_email, String user_password) {
+        this.user_name = user_name;
+        this.user_email = user_email;
+        this.user_password = user_password;
+    }
+
+    public User(int user_id, String user_name, String user_email, String user_password) {
         this.user_id = user_id;
         this.user_name = user_name;
-        this.user_city = user_city;
+        this.user_email = user_email;
+        this.user_password = user_password;
     }
 
     public int getUser_id() {
@@ -38,12 +46,20 @@ public class User {
         this.user_name = user_name;
     }
 
-    public String getUser_city() {
-        return user_city;
+    public String getUser_email() {
+        return user_email;
     }
 
-    public void setUser_city(String user_city) {
-        this.user_city = user_city;
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
+    }
+
+    public String getUser_password() {
+        return user_password;
+    }
+
+    public void setUser_password(String user_password) {
+        this.user_password = user_password;
     }
 
     @Override
@@ -51,7 +67,8 @@ public class User {
         return "User{" +
                 "user_id=" + user_id +
                 ", user_name='" + user_name + '\'' +
-                ", user_city='" + user_city + '\'' +
+                ", user_email='" + user_email + '\'' +
+                ", user_password='" + user_password + '\'' +
                 '}';
     }
 }

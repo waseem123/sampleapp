@@ -1,14 +1,19 @@
 package com.learn.sampleapp.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class VaccinationCenter {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int centerId;
-    String centerName;
-    String centerCity;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int centerId;
+    private String centerName;
+    private String centerCity;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "center_id")
+    private List<Citizen> citizens;
 
     public VaccinationCenter() {
     }

@@ -1,8 +1,10 @@
 package com.learn.sampleapp.service;
 
+import com.learn.sampleapp.model.Citizen;
 import com.learn.sampleapp.model.VaccinationCenter;
 import com.learn.sampleapp.repository.CenterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,5 +30,10 @@ public class CenterService {
     public VaccinationCenter getCenters(int id) {
         Optional<VaccinationCenter> vc = centerRepository.findById(id);
         return vc.get();
+    }
+
+
+    public void deleteCenter(int id) {
+        centerRepository.deleteById(id);
     }
 }

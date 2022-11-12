@@ -1,8 +1,10 @@
 package com.learn.sampleapp.controller;
 
+import com.learn.sampleapp.model.Citizen;
 import com.learn.sampleapp.model.VaccinationCenter;
 import com.learn.sampleapp.service.CenterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +22,8 @@ public class CenterController {
         return centerService.getAllCenters();
     }
 
+
+
     //
     @RequestMapping("/vaccinationcenter/{id}")
     public VaccinationCenter getCenters(@PathVariable int id) {
@@ -27,6 +31,15 @@ public class CenterController {
             return centerService.getCenters(id);
         } catch (NoSuchElementException e) {
             return new VaccinationCenter();
+        }
+    }
+
+    @RequestMapping("/vaccinationcenter/delete/{id}")
+    public void deleteCenter(@PathVariable int id) {
+        try {
+             centerService.deleteCenter(id);
+        } catch (NoSuchElementException e) {
+             new VaccinationCenter();
         }
     }
 }
