@@ -30,17 +30,19 @@
     			</tr>
     		</thead>
     		<tbody>
+    		    <c:forEach items="${citizens}" var="citizen">
     			<tr>
-    				<td>${citizens[0].citizenId}</td>
-    				<td>${citizens[0].citizenName}</td>
-    				<td>${citizens[0].citizenCity}</td>
-    				<td>${citizens[0].citizenDoses}</td>
-    				<td>${citizens[0].centerId}</td>
+    				<td>${citizen.citizenId}</td>
+    				<td>${citizen.citizenName}</td>
+    				<td>${citizen.citizenCity}</td>
+    				<td>${citizen.citizenDoses}</td>
+    				<td>${citizen.citizenCenter}</td>
                     <td>
                         <a href="edit-citizen"><button>Edit</button></a>
                         <button>Delete</button>
                     </td>
     			</tr>
+    			</c:forEach>
     		</tbody>
     	</table>
     </body>

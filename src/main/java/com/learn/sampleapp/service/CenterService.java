@@ -22,11 +22,11 @@ public class CenterService {
         return centers;
     }
 
-    //
-//    public void addCenter(VaccinationCenter center) {
-//        centerRepository.save(center);
-//    }
-//
+
+    public void addCenter(VaccinationCenter vaccinationCenter) {
+        centerRepository.save(vaccinationCenter);
+    }
+
     public VaccinationCenter getCenters(int id) {
         Optional<VaccinationCenter> vc = centerRepository.findById(id);
         return vc.get();
@@ -36,4 +36,5 @@ public class CenterService {
     public void deleteCenter(int id) {
         centerRepository.deleteById(id);
     }
+
 }

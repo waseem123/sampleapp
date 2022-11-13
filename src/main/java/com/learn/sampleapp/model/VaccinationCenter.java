@@ -1,6 +1,7 @@
 package com.learn.sampleapp.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,9 +12,10 @@ public class VaccinationCenter {
     private String centerName;
     private String centerCity;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "center_id")
-    private List<Citizen> citizens;
+    @OneToMany(targetEntity = Citizen.class, cascade = CascadeType.ALL, mappedBy = "vaccinationCenter")
+//    @JoinColumn(name = "vcenter_id")
+    private List<Citizen> citizens = new ArrayList<>();
+
 
     public VaccinationCenter() {
     }
@@ -21,6 +23,10 @@ public class VaccinationCenter {
     public VaccinationCenter(String centerName, String centerCity) {
         this.centerName = centerName;
         this.centerCity = centerCity;
+    }
+
+    public VaccinationCenter(int centerId) {
+        this.centerId = centerId;
     }
 
     public int getCenterId() {
@@ -46,6 +52,14 @@ public class VaccinationCenter {
     public void setCenterCity(String centerCity) {
         this.centerCity = centerCity;
     }
+
+//    public List<Citizen> getCitizens() {
+//        return citizens;
+//    }
+//
+//    public void setCitizens(List<Citizen> citizens) {
+//        this.citizens = citizens;
+//    }
 
     @Override
     public String toString() {
