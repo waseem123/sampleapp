@@ -17,30 +17,31 @@
     </head>
 
     <body>
-        <h2>Citizens</h2>
+        <h2>Citizen Information</h2>
         <table>
     		<thead>
-    		    <tr>
-    		        <td colspan="7"><a href="citizens/add-new" style="float:right"><button>Add New Citizen</button></a></td>
-    		    </tr>
     			<tr>
-    				<th>ID</th>
-    				<th>Name</th>
-    				<th>City</th>
-    				<th>No. Of Doses</th>
-    				<th>Vaccination Status</th>
-    				<th>Vaccination Center</th>
-                    <th>Action</th>
+    				<th colspan="2"><h3>${citizen.citizenName}</h3></th>
     			</tr>
     		</thead>
     		<tbody>
-    		    <c:forEach items="${citizens}" var="citizen">
     			<tr>
+    				<td>ID</td>
     				<td>${citizen.citizenId}</td>
-    				<td>${citizen.citizenName}</td>
-    				<td>${citizen.citizenCity}</td>
-    				<td>${citizen.citizenDoses}</td>
-    				<td>
+                </tr>
+                
+                <tr>
+                    <td>City</td>
+                    <td>${citizen.citizenCity}</td>
+                </tr>
+
+                <tr>
+                    <td>Number of Vaccines</td>
+                    <td>${citizen.citizenDoses}</td>
+                </tr>
+                <tr>
+                    <td>Vaccination Status</td>
+                    <td>
                         <c:if test="${citizen.citizenDoses == 0}">
                             Not Vaccinated
                         </c:if>
@@ -51,20 +52,13 @@
                             Fully Vaccinated
                         </c:if>
                     </td>
-    				<td>${citizen.citizenCenter}</td>
-                    <td>
-                        <a href="citizens/${citizen.citizenId}"><button>View</button></a>
-                        <a href="citizens/edit-citizen/${citizen.citizenId}"><button>Edit</button></a>
-                        <a href="citizens/delete/${citizen.citizenId}"><button>Delete</button></a>
-                    </td>
-    			</tr>
-    			</c:forEach>
+                </tr>
+
+                <tr>
+                    <td>Allocated Vaccination Center</td>
+                    <td><a href="../vaccinationcenter/${citizen.citizenCenterId}">${citizen.citizenCenter}</a></td>
+                </tr>
     		</tbody>
-    		<tfoot>
-    		    <tr>
-    		        <td colspan="7">${message}</td>
-    		    </tr>
-    		</tfoot>
     	</table>
     </body>
 </html>

@@ -2,6 +2,7 @@ package com.learn.sampleapp.dto;
 
 public class CitizenCenterDTO {
     private String citizenCenter;
+    private int citizenCenterId;
     private Long citizenId;
     private String citizenName;
     private String citizenCity;
@@ -9,6 +10,15 @@ public class CitizenCenterDTO {
 
     public CitizenCenterDTO(String citizenCenter, Long citizenId, String citizenName, String citizenCity, int citizenDoses) {
         this.citizenCenter = citizenCenter;
+        this.citizenId = citizenId;
+        this.citizenName = citizenName;
+        this.citizenCity = citizenCity;
+        this.citizenDoses = citizenDoses;
+    }
+
+    public CitizenCenterDTO(String citizenCenter, int citizenCenterId, Long citizenId, String citizenName, String citizenCity, int citizenDoses) {
+        this.citizenCenter = citizenCenter;
+        this.citizenCenterId = citizenCenterId;
         this.citizenId = citizenId;
         this.citizenName = citizenName;
         this.citizenCity = citizenCity;
@@ -53,5 +63,13 @@ public class CitizenCenterDTO {
 
     public void setCitizenDoses(int citizenDoses) {
         this.citizenDoses = citizenDoses;
+    }
+
+    public int getCitizenCenterId() {
+        return citizenCenterId;
+    }
+
+    public void setCitizenCenterId(int citizenCenterId) {
+        this.citizenCenterId = citizenCenterId;
     }
 }

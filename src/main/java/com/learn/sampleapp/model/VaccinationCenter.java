@@ -25,9 +25,16 @@ public class VaccinationCenter {
         this.centerCity = centerCity;
     }
 
+    public VaccinationCenter(int centerId, String centerName, String centerCity) {
+        this.centerId = centerId;
+        this.centerName = centerName;
+        this.centerCity = centerCity;
+    }
+
     public VaccinationCenter(int centerId) {
         this.centerId = centerId;
     }
+
 
     public int getCenterId() {
         return centerId;
@@ -53,13 +60,13 @@ public class VaccinationCenter {
         this.centerCity = centerCity;
     }
 
-//    public List<Citizen> getCitizens() {
-//        return citizens;
-//    }
-//
-//    public void setCitizens(List<Citizen> citizens) {
-//        this.citizens = citizens;
-//    }
+    public List<Citizen> getCitizens() {
+        return citizens;
+    }
+
+    public void setCitizens(List<Citizen> citizens) {
+        this.citizens = citizens;
+    }
 
     @Override
     public String toString() {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CitizenService {
@@ -27,14 +28,25 @@ public class CitizenService {
     }
 
     public Citizen getCitizen(Long id) {
-        return citizenRepository.findById(id).get();
+        Optional<Citizen> optional = citizenRepository.findById(id);
+        Citizen c = optional.get();
+        return c;
     }
 
-    public List<Citizen> findAllCitizens(int id) {
+    public CitizenCenterDTO getCenterwiseCitizen(Long id) {
+        CitizenCenterDTO citizen = citizenRepository.fetchCenterWiseCitizen(id);
+        return citizen;
+    }
+
+    public List<CitizenCenterDTO> findAllCitizens(int id) {
         return citizenRepository.findByCenterId(id);
     }
 
     public Citizen saveCitizen(Citizen citizen) {
         return citizenRepository.save(citizen);
+    }
+
+    public void deleteCitizen(Long id){
+        citizenRepository.deleteById(id);
     }
 }

@@ -2,18 +2,29 @@ package com.learn.sampleapp.repository;
 
 import com.learn.sampleapp.dto.CitizenCenterDTO;
 import com.learn.sampleapp.model.Citizen;
+import org.hibernate.annotations.Parameter;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface CitizenRepository extends CrudRepository<Citizen, Long> {
-    //    @EntityGraph(value = "VaccinationCenter.citizen", type = EntityGraph.EntityGraphType.FETCH)
-    List<Citizen> findByCenterId(int center_id);
+//    List<Citizen> findByCenterId(int center_id);
 
-        @Query(value = "SELECT new com.learn.sampleapp.dto.CitizenCenterDTO(v.centerName,c.citizenId,c.citizenName,c.citizenCity,c.citizenDoses)" +
+    @Query(value = "SELECT new com.learn.sampleapp.dto.CitizenCenterDTO(v.centerName,v.centerId,c.citizenId,c.citizenName,c.citizenCity,c.citizenDoses)" +
             " FROM Citizen c JOIN c.vaccinationCenter v")
-//    @Query(value = "SELECT a.citizen_id,a.citizen_city,a.citizen_name,a.citizen_doses,b.center_name FROM citizen a JOIN vaccination_center b\n" +
-//            "ON a.vcenter_id = b.center_id", nativeQuery = true)
     List<CitizenCenterDTO> fetchCenterWiseCitizens();
+
+    @Query(value = "SELECT new com.learn.sampleapp.dto.CitizenCenterDTO(v.centerName,v.centerId,c.citizenId,c.citizenName,c.citizenCity,c.citizenDoses)" +
+            " FROM Citizen c JOIN c.vaccinationCenter v" +
+            " WHERE c.citizenId = :citizen_id")
+    CitizenCenterDTO fetchCenterWiseCitizen(@Param("citizen_id") long citizen_id);
+
+    @Query(value = "SELECT new com.learn.sampleapp.dto.CitizenCenterDTO(v.centerName,v.centerId,c.citizenId,c.citizenName,c.citizenCity,c.citizenDoses)" +
+            " FROM Citizen c JOIN c.vaccinationCenter v" +
+            " WHERE v.centerId = :center_id")
+    List<CitizenCenterDTO> findByCenterId(@Param("center_id") int center_id);
 }
