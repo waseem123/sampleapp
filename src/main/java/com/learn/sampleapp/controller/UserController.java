@@ -38,7 +38,7 @@ public class UserController {
         HttpSession session = request.getSession();
         session.setAttribute("user_id", user.getUser_id());
         session.setAttribute("user_name", user.getUser_name());
-        return "redirect:/citizens";
+        return "redirect:/vaccinationcenter";
     }
 
     @RequestMapping("/registration")
