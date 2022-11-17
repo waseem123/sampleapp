@@ -10,18 +10,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Edit Citizen</title>
 	<style type="text/css">
-		html,body{
-			margin: 0;
-			width: 100%;
-		}
-		.formdiv{
-			padding: 8px;
-			border: 1px solid black;
-			display: inline-block;
-
-			margin: auto;
-			/*width: 50%;*/
-		}
+		td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding:24px;
+            text-align: center;
+        }
+        .formdiv{
+            padding: 8px;
+            border: 1px solid black;
+            display: inline-block;
+            margin-top: 24px;
+        }
 
 		.input{
 			height: 20px;
@@ -30,12 +30,17 @@
 	</style>
 </head>
 <body>
+    <jsp:include page="header.jsp" ></jsp:include>
+    <h2>Citizen Information</h2>
+    <c:if test="${error==true || success==true}">
+        ${message}
+    </c:if>
 	<div class="formdiv">
 		<form action="/citizens/edit" method="POST">
 			<table>
 				<thead>
 					<tr>
-						<th><h3>Edit Citizen</h3></th>
+						<th colspan="2"><h3>Edit Citizen</h3></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -101,7 +106,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><button type="submit">Submit</button></td>
+						<td colspan="2"><button type="submit">Submit</button></td>
 					</tr>
 				</tbody>
 			</table>

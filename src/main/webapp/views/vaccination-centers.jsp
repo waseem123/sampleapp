@@ -17,6 +17,10 @@
     </head>
 
     <body>
+        <jsp:include page="header.jsp" ></jsp:include>
+        <c:if test="${error==true || success==true}">
+            ${message}
+        </c:if>
         <h2>Centers</h2>
         <table>
             <thead>

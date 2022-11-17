@@ -10,10 +10,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>${pagetitle}</title>
 	<style type="text/css">
-		html,body{
-			margin: 0;
-			width: 100%;
-		}
 		.formdiv{
 			padding: 8px;
 			border: 1px solid black;
@@ -31,11 +27,15 @@
 </head>
 <body>
 	<div class="formdiv">
-		<form>
+		<form action="login" method="POST">
 			<table>
 				<thead>
 					<tr>
 						<th><h3>Login</h3></th>
+						<c:if test="${error==true || success==true}">
+						    ${message}
+						</c:if>
+
 					</tr>
 				</thead>
 				<tbody>
@@ -44,7 +44,7 @@
 							<label for="user_name">Username</label>
 						</td>
 						<td>
-							<input type="text" id="user_name" class="input" name="user_name">
+							<input type="email" id="user_email" class="input" name="user_email">
 						</td>
 					</tr>
 					<tr>
@@ -57,6 +57,7 @@
 					</tr>
 					<tr>
 						<td><button type="submit">Login</button></td>
+						<td><a href="/registration"><button type="button">Registration</button></a></td>
 					</tr>
 				</tbody>
 			</table>

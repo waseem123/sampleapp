@@ -1,9 +1,6 @@
 package com.learn.sampleapp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -11,6 +8,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int user_id;
     private String user_name;
+    @Column(unique = true)
     private String user_email;
     private String user_password;
 

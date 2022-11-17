@@ -10,17 +10,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Add Citizen</title>
 	<style type="text/css">
-		html,body{
-			margin: 0;
-			width: 100%;
-		}
+        td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding:24px;
+            text-align: center;
+        }
 		.formdiv{
 			padding: 8px;
 			border: 1px solid black;
 			display: inline-block;
-
-			margin: auto;
-			/*width: 50%;*/
+			margin-top: 24px;
 		}
 
 		.input{
@@ -30,12 +30,17 @@
 	</style>
 </head>
 <body>
+    <jsp:include page="header.jsp"></jsp:include>
+    <h2>Citizen Information</h2>
+    <c:if test="${error==true || success==true}">
+        ${message}
+    </c:if>
 	<div class="formdiv">
 		<form action="add" method="POST">
 			<table>
 				<thead>
 					<tr>
-						<th><h3>Add new Citizen</h3></th>
+						<th colspan="2"><h3>Add new Citizen</h3></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -66,15 +71,16 @@
                         </td>
                         <td>
                             <select id="citizen_center" name="citizen_center" class="input">
-                                <option value="1">PQR</option>
-                                <option value="2">ABC</option>
-                                <option value="3">Central</option>
-                                <option value="4">PQR</option>
+                                <c:forEach items="${vaccinationCenters}" var="center">
+                                    <option value="${center.centerId}">
+                                        ${center.centerName}
+                                    </option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
 					<tr>
-						<td><button type="submit">Submit</button></td>
+						<td colspan="2"><button type="submit">Submit</button></td>
 					</tr>
 				</tbody>
 			</table>

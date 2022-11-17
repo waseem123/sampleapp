@@ -17,6 +17,7 @@
     </head>
 
     <body>
+        <jsp:include page="header.jsp" ></jsp:include>
         <h2>Center Information</h2>
         <c:if test="${error} eq true">
             <h3>${error}</h3>

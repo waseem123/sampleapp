@@ -14,6 +14,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public User authenticateUser(String user_email, String user_password) {
+        User user = userRepository.findByEmail(user_email, user_password);
+        return user;
+    }
+
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         userRepository.findAll().forEach(users::add);
@@ -25,7 +30,7 @@ public class UserService {
         return user.get();
     }
 
-    public void addUser(User userRecord) {
-        userRepository.save(userRecord);
+    public void registerUser(User user) {
+        userRepository.save(user);
     }
 }
