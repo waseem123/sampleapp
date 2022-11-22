@@ -42,7 +42,7 @@ public class SampleappApplication {
     }
     private static void openHomePage() {
         try {
-            URI homepage = new URI("https://localhost:8086/");
+            URI homepage = new URI("http://localhost:8086/");
             if(Desktop.isDesktopSupported()){
                 Desktop desktop = Desktop.getDesktop();
                 try {
